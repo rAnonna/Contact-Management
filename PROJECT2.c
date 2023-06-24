@@ -8,10 +8,10 @@ struct  list
     char email[100];
     char add[100];
 
-}li,check;
+} li,check;
 
 int main()
-    {
+{
     int choice;
     printf("\n\t\t------<   MENU  >-------");
     printf("\n\n");
@@ -36,14 +36,14 @@ int main()
     case 3:
         listcontact();
         break;
-     case 4:
+    case 4:
         addfav();
         break;
     case 5:
         viewfav();
         break;
     case 0:
-        exit(1);
+        return 0;
         break;
     default:
         printf("\t\tEnter correct choice !");
@@ -86,13 +86,14 @@ void addcontact()
     main();
 }
 
-void listcontact(){
+void listcontact()
+{
     int f=0;
     FILE *fp;
     fp = fopen("contact.txt","r");
 
 
-     printf("\t\t       <LIST OF CONTACTS>       \n");
+    printf("\t\t       <LIST OF CONTACTS>       \n");
 
 
     while(fscanf(fp,"%s %s %s %s\n",li.name,li.phone,li.add,li.email) != EOF)
@@ -105,95 +106,106 @@ void listcontact(){
         printf("\n");
     }
     fclose(fp);
-    if(f == 0){
-        printf("\t\tNo Record Contact\n\n");
+    if(f == 0)
+    {
+        printf("\t\tNo Record Found\n\n");
 
     }
-     main();
+    main();
 }
 
-void searchcontact(){
+void searchcontact()
+{
     int f=0;
     FILE *fp;
     fp = fopen("contact.txt","r");
 
-     printf("\t\t       <SEARCH CONTACT>       \n");
-     printf("\t\tEnter name : "); fflush(stdin); gets(check.name);
+    printf("\t\t       <SEARCH CONTACT>       \n");
+    printf("\t\tEnter name : ");
+    fflush(stdin);
+    gets(check.name);
 
     while(fscanf(fp,"%s %s %s %s\n",li.name,li.phone,li.add,li.email) != EOF)
     {
-        if(strcmpi(check.name,li.name)==0){
-                f=1;
-             printf("\t\tName    : %s\n",li.name);
-             printf("\t\tPhone   : %s\n",li.phone);
-             printf("\t\tAddress : %s\n",li.add);
-             printf("\t\tEmail   : %s\n",li.email);
+        if(strcmpi(check.name,li.name)==0)
+        {
+            f=1;
+            printf("\t\tName    : %s\n",li.name);
+            printf("\t\tPhone   : %s\n",li.phone);
+            printf("\t\tAddress : %s\n",li.add);
+            printf("\t\tEmail   : %s\n",li.email);
 
             break;
         }
 
     }
     fclose(fp);
-    if(f == 0){
-        printf("\t\tCannot found the name\n\n");
+    if(f == 0)
+    {
+        printf("\t\tCould not found the name\n\n");
 
     }
-   main();
+    main();
 }
 
-void addfav(){
+void addfav()
+{
     int f=0;
     FILE *fp;
     FILE *fv;
     fp = fopen("contact.txt","r");
 
-     printf("\t\t       <ADD FAVOURITE>       \n");
-     printf("\t\tEnter name : ");
-     fflush(stdin);
-     gets(check.name);
+    printf("\t\t       <ADD FAVOURITE>       \n");
+    printf("\t\tEnter name : ");
+    fflush(stdin);
+    gets(check.name);
 
     while(fscanf(fp,"%s %s %s %s\n",li.name,li.phone,li.add,li.email) != EOF)
     {
-        if(strcmpi(check.name,li.name)==0){
-                f=1;
-             fv = fopen("fav.txt","a") ;
-             fprintf(fv,"%s ",li.name);
-             fprintf(fv,"%s ",li.phone);
-             fprintf(fv,"%s ",li.add);
-             fprintf(fv,"%s ",li.email);
-             fprintf(fv,"\n");
-             printf("\tSuccessfully Added to Favourites .  .  .");
-             fclose(fv);
+        if(strcmpi(check.name,li.name)==0)
+        {
+            f=1;
+            fv = fopen("fav.txt","a") ;
+            fprintf(fv,"%s ",li.name);
+            fprintf(fv,"%s ",li.phone);
+            fprintf(fv,"%s ",li.add);
+            fprintf(fv,"%s ",li.email);
+            fprintf(fv,"\n");
+            printf("\tSuccessfully Added to Favourites .  .  .");
+            fclose(fv);
             break;
         }
 
     }
     fclose(fp);
-    if(f == 0){
-        printf("\t\tCannot found the name\n\n");
+    if(f == 0)
+    {
+        printf("\t\tCould not found the name\n\n");
     }
     main();
 }
 
-void viewfav(){
+void viewfav()
+{
     int f=0;
     FILE *fp;
     fp = fopen("fav.txt","r");
 
 
-     printf("\t\t       <LIST OF FAVOURITES>      \n");
+    printf("\t\t       <LIST OF FAVOURITES>      \n");
 
-     while(fscanf(fp,"%s %s %s %s\n",li.name,li.phone,li.add,li.email) != EOF)
+    while(fscanf(fp,"%s %s %s %s\n",li.name,li.phone,li.add,li.email) != EOF)
     {
         f=1;
-        printf("\t\tName: %-10s\n",li.name);
-        printf("\t\tPhone: %-10s\n",li.phone);
-        printf("\t\tAddress: %-10s\n",li.add);
-        printf("\t\tEmail: %-10s\n",li.email);
+        printf("\t\tName: %s\n",li.name);
+        printf("\t\tPhone: %s\n",li.phone);
+        printf("\t\tAddress: %s\n",li.add);
+        printf("\t\tEmail: %s\n",li.email);
         printf("\n");
     }
     fclose(fp);
-    if(f == 0){
+    if(f == 0)
+    {
         printf("\t\tNo Record Contact\n\n");
     }
     main();
