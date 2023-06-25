@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+
 struct  list
 {
     char name[100];
@@ -13,16 +14,16 @@ struct  list
 int main()
 {
     int choice;
-    printf("\n\t\t------<   MENU  >-------");
+    printf("\n\t\t      <   MENU  >       ");
     printf("\n\n");
-    printf("\n\t\t[1] Add Contact");
-    printf("\n\t\t[2] Search Contact");
-    printf("\n\t\t[3] List Of Contacts");
-    printf("\n\t\t[4] Add To Favourites");
-    printf("\n\t\t[5] List Of Favourites");
-    printf("\n\t\t[0] Exit");
+    printf("\n\t[1] Add Contact");
+    printf("\n\t[2] Search Contact");
+    printf("\n\t[3] List Of Contacts");
+    printf("\n\t[4] Add To Favourites");
+    printf("\n\t[5] List Of Favourites");
+    printf("\n\t[0] Exit");
     printf("\n");
-    printf("\n\t\tEnter your Choice: ");
+    printf("\n\tEnter your Choice: ");
     scanf("%d",&choice);
     printf("\n");
     switch(choice)
@@ -46,7 +47,7 @@ int main()
         return 0;
         break;
     default:
-        printf("\t\tEnter correct choice !");
+        printf("\t\t Enter correct choice");
     }
 }
 
@@ -59,11 +60,10 @@ void addcontact()
     scanf("%s",li.phone);
     printf("\t Email: ");
     scanf("%s",li.email);
-    printf("\t Enter Adddress:  ");
+    printf("\t Enter Address:  ");
     scanf("%s",li.add);
+
     int len=strlen(li.phone);
-
-
     if(len == 11)
     {
         FILE *fp;
@@ -76,12 +76,12 @@ void addcontact()
         fprintf(fp,"\t");
         fputs(li.add,fp);
         fprintf(fp,"\n");
-        printf("\n\t Contact Added Successfully!");
+        printf("\n\t Contact Added Successfully");
         fclose(fp);
     }
     else
     {
-        printf("\t Enter 11 Digit Phone Number Only!");
+        printf("\t Enter 11 Digit Phone Number Only");
     }
     main();
 }
@@ -108,7 +108,7 @@ void listcontact()
     fclose(fp);
     if(f == 0)
     {
-        printf("\t\tNo Record Found\n\n");
+        printf("\t\t No Record Found \n\n");
 
     }
     main();
@@ -171,7 +171,7 @@ void addfav()
             fprintf(fv,"%s ",li.add);
             fprintf(fv,"%s ",li.email);
             fprintf(fv,"\n");
-            printf("\tSuccessfully Added to Favourites .  .  .");
+            printf("\t Successfully Added to Favourite");
             fclose(fv);
             break;
         }
@@ -206,7 +206,7 @@ void viewfav()
     fclose(fp);
     if(f == 0)
     {
-        printf("\t\tNo Record Contact\n\n");
+        printf("\t\t No Record Contact\n\n");
     }
     main();
 
